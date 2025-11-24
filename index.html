@@ -9,13 +9,12 @@
     :root{font-family:Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; color:#111}
     body{margin:0;background:#f6f7fb;display:flex;min-height:100vh;align-items:center;justify-content:center;padding:28px}
     .card{background:#fff;border-radius:12px;box-shadow:0 8px 30px rgba(16,24,40,0.08);max-width:820px;width:100%;padding:22px}
-    h1{margin:0 0 6px;font-size:20px}
+    h1{margin:0 0 6px;font-size:22px}
     p.lead{margin:0 0 18px;color:#555}
     .grid{display:grid;grid-template-columns:1fr 320px;gap:20px}
     .menu{display:grid;gap:10px}
-    .item{display:flex;align-items:center;gap:12px;padding:10px;border-radius:8px;border:1px solid #eef2ff}
-    .item input[type=checkbox]{width:18px;height:18px}
-    label{cursor:pointer}
+    .item{display:flex;align-items:center;gap:12px;padding:12px;border-radius:8px;border:1px solid #eef2ff;background:#fafbff}
+    label{font-weight:500}
     .office, .notes{display:flex;flex-direction:column;gap:8px}
     select,textarea{padding:10px;border-radius:8px;border:1px solid #e6e9f2;font-size:14px}
     button{background:#0b65ff;color:white;padding:10px 14px;border-radius:10px;border:0;font-weight:600;cursor:pointer}
@@ -24,49 +23,86 @@
     .summary{background:#fbfbff;border-radius:8px;padding:12px;border:1px dashed #e8eefc}
     .meta{display:flex;gap:8px;align-items:center}
     footer{margin-top:14px;color:#888;font-size:13px}
+    
     .qty-box{display:flex;align-items:center;gap:6px;margin-left:auto}
-    .qty-btn{width:30px;height:30px;border-radius:6px;border:1px solid #e6e9f2;background:#fff;cursor:pointer;font-weight:700}
-    .qty-value{min-width:22px;display:inline-block;text-align:center}
-    .separator{margin-top:12px;margin-bottom:6px;font-weight:bold;color:#333}
+    .qty-btn{width:32px;height:32px;border-radius:6px;border:1px solid #d5d9e4;background:#fff;cursor:pointer;font-weight:700;font-size:18px;line-height:1}
+    .qty-value{min-width:22px;display:inline-block;text-align:center;font-size:15px}
+
+    .separator{margin-top:16px;margin-bottom:6px;font-weight:bold;color:#333;font-size:15px}
     .title-container{display:flex;align-items:center;gap:12px;margin-bottom:12px}
-    .title-container img{height:40px}
+    .title-container img{height:46px}
+
     @media (max-width:880px){.grid{grid-template-columns:1fr;}.right{order:2}}
   </style>
 </head>
 <body>
   <div class="card">
+
+    <!-- Logo + Title -->
     <div class="title-container">
-      <img src="tadbeir logo.jpg" alt="Tadbeir Logo" class="logo">
+      <img src="tadbeir logo.jpg" alt="Tadbeir Logo">
       <h1>Tadbeir Pantry Order</h1>
     </div>
-    <p class="lead">Choose what you want and the office you're in. The order will open in WhatsApp to be sent to the pantry.</p>
+
+    <p class="lead">Choose your items and office. The order will open in WhatsApp automatically.</p>
 
     <div class="grid">
       <form id="orderForm" class="menu" onsubmit="return handleSubmit(event)">
+
+        <!-- MENU -->
         <div>
           <strong>Menu</strong>
           <div class="menu-list" style="margin-top:10px">
-            <div class="item" data-id="coffee"><input type="checkbox" id="i_coffee" name="items" value="Coffee"><label for="i_coffee">Coffee</label><div class="qty-box"><button type="button" class="qty-btn minus">-</button><span class="qty-value">0</span><button type="button" class="qty-btn plus">+</button></div></div>
-            <div class="item" data-id="tea"><input type="checkbox" id="i_tea" name="items" value="Tea"><label for="i_tea">Tea</label><div class="qty-box"><button type="button" class="qty-btn minus">-</button><span class="qty-value">0</span><button type="button" class="qty-btn plus">+</button></div></div>
-            <div class="item" data-id="capp"><input type="checkbox" id="i_capp" name="items" value="Cappuccino"><label for="i_capp">Cappuccino</label><div class="qty-box"><button type="button" class="qty-btn minus">-</button><span class="qty-value">0</span><button type="button" class="qty-btn plus">+</button></div></div>
-            <div class="item" data-id="espresso"><input type="checkbox" id="i_espresso" name="items" value="Espresso"><label for="i_espresso">Espresso</label><div class="qty-box"><button type="button" class="qty-btn minus">-</button><span class="qty-value">0</span><button type="button" class="qty-btn plus">+</button></div></div>
-            <div class="item" data-id="latte"><input type="checkbox" id="i_latte" name="items" value="Latte"><label for="i_latte">Latte</label><div class="qty-box"><button type="button" class="qty-btn minus">-</button><span class="qty-value">0</span><button type="button" class="qty-btn plus">+</button></div></div>
-            <div class="item" data-id="hotchoc"><input type="checkbox" id="i_hotchoc" name="items" value="Hot Chocolate"><label for="i_hotchoc">Hot Chocolate</label><div class="qty-box"><button type="button" class="qty-btn minus">-</button><span class="qty-value">0</span><button type="button" class="qty-btn plus">+</button></div></div>
-            <div class="item" data-id="water"><input type="checkbox" id="i_water" name="items" value="Bottled Water"><label for="i_water">Bottled Water</label><div class="qty-box"><button type="button" class="qty-btn minus">-</button><span class="qty-value">0</span><button type="button" class="qty-btn plus">+</button></div></div>
+
+            <!-- ITEMS WITHOUT CHECKBOXES -->
+            <div class="item" data-id="coffee"><label>Coffee</label>
+              <div class="qty-box"><button type="button" class="qty-btn minus">-</button><span class="qty-value">0</span><button type="button" class="qty-btn plus">+</button></div>
+            </div>
+
+            <div class="item" data-id="tea"><label>Tea</label>
+              <div class="qty-box"><button type="button" class="qty-btn minus">-</button><span class="qty-value">0</span><button type="button" class="qty-btn plus">+</button></div>
+            </div>
+
+            <div class="item" data-id="capp"><label>Cappuccino</label>
+              <div class="qty-box"><button type="button" class="qty-btn minus">-</button><span class="qty-value">0</span><button type="button" class="qty-btn plus">+</button></div>
+            </div>
+
+            <div class="item" data-id="espresso"><label>Espresso</label>
+              <div class="qty-box"><button type="button" class="qty-btn minus">-</button><span class="qty-value">0</span><button type="button" class="qty-btn plus">+</button></div>
+            </div>
+
+            <div class="item" data-id="latte"><label>Latte</label>
+              <div class="qty-box"><button type="button" class="qty-btn minus">-</button><span class="qty-value">0</span><button type="button" class="qty-btn plus">+</button></div>
+            </div>
+
+            <div class="item" data-id="hotchoc"><label>Hot Chocolate</label>
+              <div class="qty-box"><button type="button" class="qty-btn minus">-</button><span class="qty-value">0</span><button type="button" class="qty-btn plus">+</button></div>
+            </div>
+
+            <div class="item" data-id="water"><label>Bottled Water</label>
+              <div class="qty-box"><button type="button" class="qty-btn minus">-</button><span class="qty-value">0</span><button type="button" class="qty-btn plus">+</button></div>
+            </div>
           </div>
 
+          <!-- SEPARATED EXTRAS -->
           <div class="separator">Extras</div>
-          <div class="item" data-id="sugar"><input type="checkbox" id="i_sugar" name="items" value="Sugar"><label for="i_sugar">Sugar</label><div class="qty-box"><button type="button" class="qty-btn minus">-</button><span class="qty-value">0</span><button type="button" class="qty-btn plus">+</button></div></div>
+
+          <div class="item" data-id="sugar"><label>Sugar</label>
+            <div class="qty-box"><button type="button" class="qty-btn minus">-</button><span class="qty-value">0</span><button type="button" class="qty-btn plus">+</button></div>
+          </div>
         </div>
 
+        <!-- NOTES -->
         <div class="notes" style="margin-top:8px">
-          <label for="notes"><strong>Notes (optional)</strong></label>
-          <textarea id="notes" name="notes" rows="3" placeholder="e.g. No sugar, extra hot, please deliver to the reception"></textarea>
+          <label><strong>Notes (optional)</strong></label>
+          <textarea id="notes" rows="3" placeholder="e.g. No sugar, extra hot"></textarea>
         </div>
 
+        <!-- RIGHT SIDE -->
         <div class="right">
+
           <div class="office">
-            <label for="office"><strong>Select your office</strong></label>
+            <label><strong>Select your office</strong></label>
             <select id="office">
               <option value="Office 1">Office 1</option>
               <option value="Office 2">Office 2</option>
@@ -76,19 +112,20 @@
             </select>
           </div>
 
-          <div class="summary" style="margin-top:8px">
+          <div class="summary">
             <strong>Order preview</strong>
             <div id="preview" style="margin-top:8px;color:#222">No items selected yet.</div>
           </div>
 
           <div style="display:flex;gap:8px;align-items:center;margin-top:8px">
             <div class="small">Tea boy WhatsApp:</div>
-            <div class="meta"><input id="teaNumber" placeholder="e.g. 9665XXXXXXXX" style="padding:8px;border-radius:8px;border:1px solid #e6e9f2" value="966537772449" /></div>
+            <input id="teaNumber" style="padding:8px;border-radius:8px;border:1px solid #e6e9f2" value="966537772449" />
           </div>
 
           <div style="margin-top:12px">
             <button type="submit">Send order to WhatsApp</button>
           </div>
+
         </div>
       </form>
     </div>
@@ -103,40 +140,55 @@
     const teaNumberEl = document.getElementById('teaNumber');
 
     function elemsFor(id){
-      const cb = document.getElementById('i_'+id);
-      const container = cb ? cb.closest('.item') : null;
-      const qtySpan = container ? container.querySelector('.qty-value') : null;
-      const minusBtn = container ? container.querySelector('.qty-btn.minus') : null;
-      const plusBtn = container ? container.querySelector('.qty-btn.plus') : null;
-      return {cb, qtySpan, minusBtn, plusBtn};
+      const container = document.querySelector(`.item[data-id="${id}"]`);
+      const qtySpan = container.querySelector('.qty-value');
+      const minusBtn = container.querySelector('.qty-btn.minus');
+      const plusBtn = container.querySelector('.qty-btn.plus');
+      const label = container.querySelector('label');
+      return {label, qtySpan, minusBtn, plusBtn};
     }
 
     function updatePreview(){
       const lines = [];
-      items.forEach(it=>{
-        const {cb, qtySpan} = elemsFor(it);
-        const qty = qtySpan ? parseInt(qtySpan.textContent||'0',10) : 0;
-        if(cb && qty>0){
-          cb.checked = true;
-          lines.push(`${cb.value} x${qty}`);
-        } else if(cb) {
-          cb.checked = false;
+
+      items.forEach(it => {
+        const {label, qtySpan} = elemsFor(it);
+        const qty = parseInt(qtySpan.textContent || '0',10);
+        if(qty > 0){
+          lines.push(`${label.textContent} x${qty}`);
         }
       });
-      if(lines.length===0){ preview.textContent='No items selected yet.'; return; }
+
+      if(lines.length === 0){
+        preview.textContent = 'No items selected yet.';
+        return;
+      }
+
       const office = officeEl.value;
       const notes = notesEl.value.trim();
+
       let html = lines.join('\n');
       html += '\n\nOffice: ' + office;
       if(notes) html += '\nNotes: ' + notes;
+
       preview.textContent = html;
     }
 
+    // qty buttons
     items.forEach(it=>{
-      const {cb, qtySpan, minusBtn, plusBtn} = elemsFor(it);
-      if(!cb) return;
-      if(minusBtn){ minusBtn.addEventListener('click', ()=>{ let val=parseInt(qtySpan.textContent||'0',10); if(val>0) val--; qtySpan.textContent=val; updatePreview(); }); }
-      if(plusBtn){ plusBtn.addEventListener('click', ()=>{ let val=parseInt(qtySpan.textContent||'0',10); val++; qtySpan.textContent=val; updatePreview(); }); }
+      const {qtySpan, minusBtn, plusBtn} = elemsFor(it);
+      minusBtn.addEventListener('click', ()=>{
+        let val = parseInt(qtySpan.textContent || '0',10);
+        if(val > 0) val--;
+        qtySpan.textContent = val;
+        updatePreview();
+      });
+      plusBtn.addEventListener('click', ()=>{
+        let val = parseInt(qtySpan.textContent || '0',10);
+        val++;
+        qtySpan.textContent = val;
+        updatePreview();
+      });
     });
 
     officeEl.addEventListener('change', updatePreview);
@@ -144,21 +196,28 @@
 
     function handleSubmit(ev){
       ev.preventDefault();
+
       const lines=[];
       items.forEach(it=>{
-        const {cb, qtySpan} = elemsFor(it);
-        if(cb && cb.checked){
-          const qty = qtySpan ? parseInt(qtySpan.textContent||'0',10) : 0;
-          lines.push(`${cb.value} x${qty}`);
+        const {label, qtySpan} = elemsFor(it);
+        const qty = parseInt(qtySpan.textContent||'0',10);
+        if(qty > 0){
+          lines.push(`${label.textContent} x${qty}`);
         }
       });
-      if(lines.length===0){ alert('Please select at least one item.'); return false; }
+
+      if(lines.length===0){
+        alert('Please select at least one item.');
+        return false;
+      }
+
       const office=officeEl.value;
       const notes=notesEl.value.trim();
       const phoneRaw=teaNumberEl.value.trim();
 
       const now=new Date();
       const timeStr=now.toLocaleString();
+
       let message='New Pantry Order%0A%0AItems:%0A';
       lines.forEach(l=> message += '- '+encodeURIComponent(l)+'%0A');
       message += '%0AOffice: '+encodeURIComponent(office);
@@ -166,6 +225,7 @@
       message += '%0A%0ATime: '+encodeURIComponent(timeStr);
 
       const phone=phoneRaw.replace(/[^0-9]/g,'');
+
       let url='';
       if(navigator.userAgent.match(/Mobi|Android|iPhone/i)){
         url='whatsapp://send?phone='+phone+'&text='+message;
